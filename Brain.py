@@ -27,5 +27,5 @@ class Brain:
     def mutate(self):
         wih_mask = np.random.normal(0, 1, size=self.wih.shape)
         who_mask = np.random.normal(0, 1, size=self.who.shape)
-        self.wih *= wih_mask
-        self.who *= who_mask
+        self.wih *= wih_mask * 0.1
+        self.who *= who_mask * 0.1
