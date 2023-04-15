@@ -12,9 +12,12 @@ dock = Dock()
 ga = GA()
 ga.init_population()
 if os.path.exists('best.npz'):
-    wih = np.load('best.npz')['arr_0']
-    who = np.load('best.npz')['arr_1']
-    ga.brain_fill(wih, who)
+    to_load = 'best.npz'
+else:
+    to_load = 'init_best.npz'
+wih = np.load(to_load)['arr_0']
+who = np.load(to_load)['arr_1']
+ga.brain_fill(wih, who)
 
 def update(dt):
     ga.update(dt)

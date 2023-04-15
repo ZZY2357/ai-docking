@@ -36,7 +36,7 @@ class KinematicBody:
         self.ar = 0
 
         self.apply_force(self.v.copy().mult(-0.01))
-        self.apply_rotation(self.vr * -0.1)
+        self.apply_rotation(self.vr * -0.3)
 
     def draw(self):
         pass

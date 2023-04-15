@@ -15,11 +15,13 @@ class Spaceship(KinematicBody):
         self.__throttle = 0 # -1 ~ 1
         self.__roll = 0 # -1 ~ 1
 
+        self.color = (255, 0, 0)
+
         self.fuel_uesd = 0
 
         self.brain = Brain(
             7, # x, y, vx, vy, r, vr, dock_y
-            20,
+            10,
             2 # throttle, roll
         )
 
@@ -81,9 +83,8 @@ class Spaceship(KinematicBody):
 
     def fitness(self):
         dock = Dock()
-        return \
-            80000 - self.fuel_uesd * 1 \
-            - self.get_dock_pos().distance_to(Vector(dock.p.x, dock.p.y)) * 30
+        return - self.fuel_uesd * 1 \
+            - self.get_dock_pos().distance_to(Vector(dock.p.x, dock.p.y)) * 20
 
     def update(self, dt):
         super().update(dt)
@@ -97,7 +98,7 @@ class Spaceship(KinematicBody):
         body = pyglet.shapes.Rectangle(
             self.p.x, self.p.y,
             SPACESHIP_WIDTH, SPACESHIP_HEIGHT,
-            (255, 0, 0)
+            color=self.color
         )
         body.anchor_position = (SPACESHIP_WIDTH / 2, SPACESHIP_HEIGHT / 2)
         body.rotation = -self.r
@@ -107,7 +108,7 @@ class Spaceship(KinematicBody):
             self.get_dock_pos().x,
             self.get_dock_pos().y,
             DOCK_RADIUS,
-            color=(0, 255, 0)
+            color=(250, 230, 230)
         )
         dock.draw()
 
